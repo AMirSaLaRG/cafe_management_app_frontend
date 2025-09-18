@@ -15,10 +15,10 @@ const darkTheme = createTheme({
 function App() {
   return (
     <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
       <Box sx={{ display: "flex" }}>
-        <CssBaseline />
-        <AppBar />
         <Sidebar />
+        <AppBar />
         <MainContent>
           <Dashboard />
         </MainContent>

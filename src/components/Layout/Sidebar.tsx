@@ -1,55 +1,51 @@
-import React from "react";
-import { Drawer, Box, Typography } from "@mui/material";
+import React, { useState } from "react";
+import {
+  Drawer,
+  Box,
+  Typography,
+  IconButton,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import MultipleSelectCheckmarks from "../buttons/DropDownCheck";
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
-import FilterListIcon from "@mui/icons-material/FilterList";
+import LocalCafeOutlinedIcon from "@mui/icons-material/LocalCafeOutlined";
 import SettingsIcon from "@mui/icons-material/Settings";
 import DownloadIcon from "@mui/icons-material/Download";
 import ShareIcon from "@mui/icons-material/Share";
 import Avatar from "@mui/material/Avatar";
-import IconButton from "@mui/material/IconButton";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { styled } from "@mui/material/styles";
 import Badge, { badgeClasses } from "@mui/material/Badge";
-import { display } from "@mui/system";
+import MenuIcon from "@mui/icons-material/Menu"; // Import the hamburger icon
+import CloseIcon from "@mui/icons-material/Close"; // Import close icon
 
 const drawerWidth = 280;
 
 const CartBadge = styled(Badge)`
   & .${badgeClasses.badge} {
-    top: -12px;
+    top: -6px;
     right: -6px;
   }
 `;
 
 const Sidebar: React.FC = () => {
-  return (
-    <Drawer
-      variant="permanent"
-      sx={{
-        width: drawerWidth,
-        flexShrink: 0,
-        "& .MuiDrawer-paper": {
-          width: drawerWidth,
-          boxSizing: "border-box",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          alignItems: "center",
-          padding: "0",
-          background: "linear-gradient(180deg, #070707ff 0%, #1a0606ff 100%)",
-          borderRight: "1px solid #0f0808ff",
-          overflow: "hidden",
-        },
-      }}
-    >
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+
+  const drawerContent = (
+    <>
       {/* Top Section - Fixed */}
       <Box
         sx={{
           width: "100%",
-          padding: "16px",
-          backgroundColor: "black",
+          padding: "7px",
           boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
           zIndex: 10,
           flexShrink: 0,
@@ -57,10 +53,20 @@ const Sidebar: React.FC = () => {
       >
         <Typography
           variant="h6"
-          sx={{ marginBottom: "16px", display: "flex", alignItems: "center" }}
+          sx={{
+            marginBottom: "7px",
+            display: "flex",
+            alignItems: "center",
+            fontWeight: "bold",
+            fontFamily: "Monospace",
+            letterSpacing: 3,
+          }}
         >
-          <FilterListIcon sx={{ marginRight: "8px" }} />
-          Filters
+          <LocalCafeOutlinedIcon
+            sx={{
+              marginRight: "8px",
+            }}
+          />
         </Typography>
         <MultipleSelectCheckmarks />
       </Box>
@@ -117,7 +123,6 @@ const Sidebar: React.FC = () => {
         sx={{
           width: "100%",
           padding: "16px",
-          backgroundColor: "black",
           boxShadow: "0 -2px 4px rgba(0,0,0,0.1)",
           textAlign: "center",
           zIndex: 10,
@@ -168,7 +173,78 @@ const Sidebar: React.FC = () => {
           </Box>
         </Box>
       </Box>
-    </Drawer>
+    </>
+  );
+  return (
+    <>
+      {/* humburger menu button for mobile */}
+      {isMobile && (
+        <IconButton
+          color="inherit"
+          aria-label="open drawer"
+          edge="start"
+          onClick={handleDrawerToggle}
+          sx={{
+            position: "fixed",
+            top: 7,
+            left: 16,
+            zIndex: theme.zIndex.drawer + 1,
+            backgroundColor: "Background.paper",
+            boxShadow: 2,
+          }}
+        >
+          <MenuIcon />
+        </IconButton>
+      )}
+
+      {/* the drawer */}
+      <Drawer
+        variant={isMobile ? "temporary" : "permanent"}
+        open={isMobile ? mobileOpen : true}
+        onClose={handleDrawerToggle}
+        sx={{
+          width: isMobile ? "100%" : drawerWidth,
+          flexShrink: 0,
+          position: "fixed",
+          height: "100vh",
+          zIndex: (theme) => theme.zIndex.drawer + 2,
+          "& .MuiDrawer-paper": {
+            width: isMobile ? "80%" : drawerWidth,
+            position: "fixed",
+            height: "100vh",
+            boxSizing: "border-box",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            alignItems: "center",
+            padding: "0",
+            borderRight: "1px solid #0f0808ff",
+            overflow: "hidden",
+          },
+        }}
+        ModalProps={{
+          keepMounted: true,
+        }}
+      >
+        {/* Close button for mobile */}
+        {isMobile && (
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "flex-end",
+              width: "100%",
+              p: 1,
+            }}
+          >
+            <IconButton onClick={handleDrawerToggle}>
+              <CloseIcon />
+            </IconButton>
+          </Box>
+        )}
+
+        {drawerContent}
+      </Drawer>
+    </>
   );
 };
 
