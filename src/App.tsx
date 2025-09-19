@@ -5,6 +5,7 @@ import Sidebar from "./components/Layout/Sidebar";
 import MainContent from "./components/Layout/MainContent";
 import Dashboard from "./components/Dashbboard/Dashboard";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import MenuCard from "./components/Menu/MenuCard/MenuCard";
 
 const darkTheme = createTheme({
   palette: {
@@ -20,7 +21,11 @@ function App() {
         <Sidebar />
         <AppBar />
         <MainContent>
-          <Dashboard />
+          {/* <Dashboard /> */}
+          <MenuCard />
+          <MenuCard />
+          <MenuCard />
+          <MenuCard />
         </MainContent>
       </Box>
     </ThemeProvider>

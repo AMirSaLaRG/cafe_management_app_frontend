@@ -20,6 +20,7 @@ import { styled } from "@mui/material/styles";
 import Badge, { badgeClasses } from "@mui/material/Badge";
 import MenuIcon from "@mui/icons-material/Menu"; // Import the hamburger icon
 import CloseIcon from "@mui/icons-material/Close"; // Import close icon
+import ProfileIcontClickable from "../Profile/ProfileIcontClickable";
 
 const drawerWidth = 280;
 
@@ -132,11 +133,7 @@ const Sidebar: React.FC = () => {
           alignItems: "center",
         }}
       >
-        <Avatar
-          alt="Remy Sharp"
-          src="/public/images/selfie3.png"
-          sx={{ width: 56, height: 56 }}
-        />
+        <ProfileIcontClickable />
         <Box
           sx={{
             display: "flex",
