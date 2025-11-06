@@ -1,0 +1,22 @@
+:root {
+  font-size: 16px;  /* Base font size - you can adjust this value */
+}
+
+html {
+  font-size: 100%;  /* This will use the root font size */
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 1rem;  /* This will inherit from html */
+}
+
+/* If you want all text to be bigger, you can add this */
+p, h1, h2, h3, h4, h5, h6, span, div, button, input, select, textarea {
+  font-size: 1.1rem;  /* This makes all text 10% larger than the base size */
+}

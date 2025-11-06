@@ -5,7 +5,9 @@ import Sidebar from "./components/Layout/Sidebar";
 import MainContent from "./components/Layout/MainContent";
 import Dashboard from "./components/Dashbboard/Dashboard";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import MenuCard from "./components/Menu/MenuCard/MenuCard";
+import TestComponent from "./components/TestComponent";
+import MenuList from "./components/Menu/MenuList";
+import MenuPage from "./components/Menu/MenuPage";
 
 const darkTheme = createTheme({
   palette: {
@@ -22,10 +24,12 @@ function App() {
         <AppBar />
         <MainContent>
           {/* <Dashboard /> */}
+          {/* <MenuCard />
           <MenuCard />
-          <MenuCard />
-          <MenuCard />
-          <MenuCard />
+          <MenuCard /> */}
+          {/* <MenuList /> */}
+          <MenuPage />
+          {/* <TestComponent /> */}
         </MainContent>
       </Box>
     </ThemeProvider>
